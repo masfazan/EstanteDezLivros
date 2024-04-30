@@ -46,12 +46,12 @@ public class Livro
 
     public void ImprimirLivro()
     {
-        Console.WriteLine($"Título{Titulo}", this.Titulo);
-        Console.WriteLine($"Autor(es){Autor}", this.Autor);
-        Console.WriteLine($"Editora{Editora}", this.Editora);
-        Console.WriteLine($"Edição{Edicao}", this.Edicao);
-        Console.WriteLine($"ISBN{ISBN}", this.ISBN);
-        Console.WriteLine($"Páginas{Paginas}", this.Paginas);
+        Console.WriteLine($"Título: {this.Titulo}");
+        Console.WriteLine($"Autor(es): {this.Autor}");
+        Console.WriteLine($"Editora: {this.Editora}");
+        Console.WriteLine($"Edição: {this.Edicao}");
+        Console.WriteLine($"ISBN: {this.ISBN}");
+        Console.WriteLine($"Páginas: {this.Paginas}");
     }
 
 }
