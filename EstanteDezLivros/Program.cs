@@ -1,5 +1,7 @@
-﻿int cadastro = 0;
-char resposta;
+﻿using System.ComponentModel.Design;
+
+int cadastro = 0;
+int resposta;
 Livro livro = new Livro();
 Livro[] livros = new Livro[10];
 
@@ -41,18 +43,28 @@ void AdicionarLivroEstante()
         }
         else
         {
-            Console.WriteLine("Gostaria de incluir mais um?\nDigite: S-para sim e N-para não");
-            resposta = char.Parse(Console.ReadLine());
+            Console.WriteLine("Gostaria de incluir mais um?\nDigite: 1-para sim e 2-para não");
+            resposta = int.Parse(Console.ReadLine());
+            switch (resposta)
+            {
+                case 1:
+                    livros[cadastro] = InserirLivro();
+                    break;
+                case 2:
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida!");
+                    break;
+            }
         }
-        if (resposta == 'n') ;
-        break;
-
-    } while (resposta == 's');
+    } while (true);
+    
 }
 void ImprimirEstante()
 {
     for (int i = 0; i < cadastro; i++)
-{
+    {
         Console.WriteLine($"Livro {i + 1}:");
         livros[i].ImprimirLivro();
     }
@@ -64,7 +76,7 @@ void BuscarLivro(int i)
 
 do
 {
-    switch (Menu() )
+    switch (Menu())
     {
         case 1:
             AdicionarLivroEstante();
@@ -73,10 +85,19 @@ do
             ImprimirEstante();
             break;
         case 3:
-            Console.WriteLine("Informe o índice do livro: ");
-            BuscarLivro(int.Parse(Console.ReadLine()));
+            int posicao = 0;
+            do {
+                Console.WriteLine("Informe o índice do livro: ");
+                posicao = (int.Parse(Console.ReadLine()));
+                if (posicao > cadastro || posicao == 0)
+                {
+                    Console.WriteLine("Não há livros cadastrados no índice informado!");
+                }
+            } while (posicao > cadastro || posicao == 0);
+            BuscarLivro(posicao);
             break;
         case 4:
+            Console.WriteLine("Saindo...");
             Environment.Exit(0);
             break;
         default:
@@ -84,7 +105,7 @@ do
             break;
 
     }
-}while(true);
+} while (true);
 Console.ReadLine();
 
 

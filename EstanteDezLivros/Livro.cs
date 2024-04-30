@@ -20,7 +20,16 @@ public class Livro
 
     public string DefinirAutor()
     {
-        Console.WriteLine("Qual autor ou quais autores do livro? ");
+        int autor = 0;
+        string[] autores = new string[3];
+        Console.WriteLine("Digite a quantidade de autores: ");
+        autor=int.Parse(Console.ReadLine());
+        for (int i = 0; i < autor; i++)
+        {
+            Console.WriteLine($"Digite o nome do autor {autor+1}:  ");
+            autores[i]= Console.ReadLine();
+        }            
+        
         return Console.ReadLine();
     }
     public string DefinirEditora()
