@@ -1,8 +1,10 @@
 ﻿
+using System.ComponentModel.Design;
+
 public class Livro
 {
     public string Titulo;
-    public string Autor;
+    public string []Autor;
     public string Editora;
     public string Edicao;
     public int ISBN;
@@ -18,19 +20,29 @@ public class Livro
         return Console.ReadLine();
     }
 
-    public string DefinirAutor()
+    public string[] DefinirAutor()
     {
         int autor = 0;
         string[] autores = new string[3];
-        Console.WriteLine("Digite a quantidade de autores: ");
-        autor=int.Parse(Console.ReadLine());
+        do
+        {
+            Console.WriteLine("Digite a quantidade de autores (mínimo 1 e máximo 3): ");
+            autor = int.Parse(Console.ReadLine());
+            if (autor == 0 || autor > 3)
+            {
+                Console.WriteLine("O cadastro só pode ser realizado com no mínimo 1 autor e no máximo 3 ");
+            }
+            else
+            {
+                break;//se não for essa opção ele quebra o laço, para não gerar essa mensagem em opções válidas
+            }
+        }while(autor == 0 || autor >3);
         for (int i = 0; i < autor; i++)
         {
-            Console.WriteLine($"Digite o nome do autor {autor+1}:  ");
-            autores[i]= Console.ReadLine();
-        }            
-        
-        return Console.ReadLine();
+            Console.WriteLine($"Digite o nome do autor {i + 1}:  ");
+            autores[i] = Console.ReadLine();
+        }
+        return autores;
     }
     public string DefinirEditora()
     {
@@ -56,7 +68,11 @@ public class Livro
     public void ImprimirLivro()
     {
         Console.WriteLine($"Título: {this.Titulo}");
-        Console.WriteLine($"Autor(es): {this.Autor}");
+        Console.WriteLine("Autor(es): ");
+        for (int i = 0; i<this.Autor.Length; i++) 
+        {
+            Console.WriteLine(this.Autor[i]+"\n");
+        }
         Console.WriteLine($"Editora: {this.Editora}");
         Console.WriteLine($"Edição: {this.Edicao}");
         Console.WriteLine($"ISBN: {this.ISBN}");

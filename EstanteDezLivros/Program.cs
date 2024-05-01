@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.Design;
-
-int cadastro = 0;
+﻿int cadastro = 0;
 int resposta;
 Livro livro = new Livro();
 Livro[] livros = new Livro[10];
@@ -32,29 +30,28 @@ void AdicionarLivroEstante()
 {
     do
     {
-        Console.WriteLine($"Cadastre o Livro {cadastro + 1}");
+        Console.WriteLine($"Cadastre o Livro {cadastro + 1}\n");
         livros[cadastro] = InserirLivro();
         Console.WriteLine();
         cadastro++;
         if (cadastro >= 2)
         {
-            Console.WriteLine("Estante cheia!");
+            Console.WriteLine("Estante cheia!\n");
             break;
         }
         else
         {
-            Console.WriteLine("Gostaria de incluir mais um?\nDigite: 1-para sim e 2-para não");
+            Console.WriteLine("Gostaria de incluir mais um?\nDigite: 1-para sim e 2-para não\n");
             resposta = int.Parse(Console.ReadLine());
             switch (resposta)
             {
                 case 1:
-                    livros[cadastro] = InserirLivro();
-                    break;
+                    break;//Quebra o laço e retorna no cadastro na próx [i], se colocar função aqui ele recomeça do 0
                 case 2:
-                    Environment.Exit(0);
+                    Menu();
                     break;
                 default:
-                    Console.WriteLine("Opção inválida!");
+                    Console.WriteLine("Opção inválida!\n");
                     break;
             }
         }
@@ -89,11 +86,11 @@ do
             do {
                 Console.WriteLine("Informe o índice do livro: ");
                 posicao = (int.Parse(Console.ReadLine()));
-                if (posicao > cadastro || posicao == 0)
+                if (posicao <=0 || posicao >cadastro)
                 {
                     Console.WriteLine("Não há livros cadastrados no índice informado!");
                 }
-            } while (posicao > cadastro || posicao == 0);
+            } while (posicao <= 0 || posicao > cadastro);
             BuscarLivro(posicao);
             break;
         case 4:
