@@ -26,8 +26,9 @@ Livro InserirLivro()
 
     return livroInserido;
 }
-void AdicionarLivroEstante()
+int AdicionarLivroEstante()
 {
+    cadastro = 0;
     do
     {
         Console.WriteLine($"Cadastre o Livro {cadastro + 1}\n");
@@ -48,15 +49,14 @@ void AdicionarLivroEstante()
                 case 1:
                     break;//Quebra o laço e retorna no cadastro na próx [i], se colocar função aqui ele recomeça do 0
                 case 2:
-                    Menu();
-                    break;
-                default:
+                    return Menu();
+                    default:
                     Console.WriteLine("Opção inválida!\n");
                     break;
             }
         }
     } while (true);
-    
+    return 0;
 }
 void ImprimirEstante()
 {

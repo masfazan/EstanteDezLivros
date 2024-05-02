@@ -71,7 +71,7 @@ public class Livro
         Console.WriteLine("Autor(es): ");
         for (int i = 0; i<this.Autor.Length; i++) 
         {
-            Console.WriteLine(this.Autor[i]+"\n");
+            Console.WriteLine(this.Autor[i]);
         }
         Console.WriteLine($"Editora: {this.Editora}");
         Console.WriteLine($"Edição: {this.Edicao}");
